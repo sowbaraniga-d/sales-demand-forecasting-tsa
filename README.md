@@ -1,38 +1,84 @@
-# sales-demand-forecasting-tsa
-Time series analysis and forecasting of monthly sales data using statistical modeling to predict future demand trends.
-This project focuses on identifying long-term patterns in sales data and building a robust predictive model to forecast future performance. It moves beyond simple observation to provide actionable business insights through time series forecasting. The project focuses on transforming raw temporal data into a stationary format to predict future trends using automated ARIMA modeling.
+# 📈 sales-demand-forecasting-tsa
 
-## 🚀 Project Objective
-The goal is to take historical sales data, perform a full exploratory analysis, and implement an automated **ARIMA** pipeline to predict future sales trends with high statistical accuracy.
+### Sales Demand Forecasting & Economic Driver Analysis using Time Series Analysis
 
-### 🛠️ Tech Stack & Libraries
-* **Data Processing**: `Pandas`, `NumPy`
-* **Visualizations**: `Matplotlib`
-* **Statistical Testing**: `Statsmodels` (ADF Test)
-* **Automated Modeling**: `pmdarima` (Auto-ARIMA)
+## 📌 Project Overview
+This project focuses on forecasting future sales demand using historical time series data combined with key economic exogenous variables. By integrating financial and cost-related drivers into a statistical forecasting model, the project delivers accurate, interpretable, and business-relevant predictions.
 
-## 📊 Analytical Workflow
+## 🎯 Objective
+To build a high-precision predictive model that forecasts future sales quantities based on historical trends and key economic exogenous variables, enabling data-driven inventory and financial planning.
 
-### 1. Data Cleaning & Preparation
-* **Handling Missing Data**: Identified and resolved gaps in the sales records to ensure a continuous time sequence.
-* **DateTime Indexing**: Converted data into a time-series format by indexing on date columns.
-* **Descriptive Statistics**: Generated a statistical summary to understand sales distribution and variance.
+## 🧾 Dataset Description
+- File Name: Month_Value_1.csv  
+- Frequency: Monthly  
+- Target Variable: Sales Quantity  
+- Exogenous Variables:
+  - Revenue
+  - Average Cost
+  - Regional Payroll
 
-### 2. Exploratory Data Analysis (EDA)
-* **Trend Analysis**: Visualized raw sales data to identify growth or decline patterns.
-* **Rolling Statistics**: Calculated rolling mean and standard deviation to inspect variance stability over time.
-* **Correlation Matrix**: Analyzed relationships between lagged sales variables.
+## 🔍 Methodology
 
-### 3. Stationarity & Transformation
-* **ADF Testing**: Performed the **Augmented Dickey-Fuller Test** to determine if the sales series was stationary.
-* **Differencing**: Applied mathematical transformations to remove non-stationary trends, preparing the data for the model.
+### Data Preprocessing
+- Cleaned the dataset and converted periods to a DateTime index
+- Applied linear interpolation to ensure a continuous time series
 
-### 4. Forecasting Model (Auto-ARIMA)
-* **Model Implementation**: Utilized the `pmdarima` library to automatically discover the best-fit parameters ($p, d, q$) for the sales forecast.
-* **Model Summary**: Reviewed the statistical health of the model to ensure reliable predictions.
-* **Future Forecast**: Generated a projected trend line showing expected future sales.
+### Stationarity Diagnostics
+- Applied the Augmented Dickey-Fuller (ADF) test
+- Raw series was non-stationary (p = 0.55)
+- First-order differencing achieved stationarity (p ≈ 0)
 
-## 🔍 Key Findings (Results)
-* **Trend Identification**: Confirmed a clear trend in sales volume that required transformation before modeling.
-* **Stationarity Success**: Through differencing, the dataset's $p$-value was reduced, confirming the data became stationary and predictable.
-* **Predictive Accuracy**: The model successfully captured historical sales cycles, allowing for a realistic projection of future sales growth.
+### Exogenous Variable Integration
+- Incorporated Revenue, Average Cost, and Regional Payroll as external drivers
+
+### Model Development
+- Model Used: SARIMAX (Seasonal ARIMA with Exogenous Variables)
+- Configuration: SARIMAX(1, 1, 1)
+- Train-Test Split: 80% / 20%
+
+### Model Evaluation
+- Evaluation Metric: Mean Absolute Error (MAE)
+- MAE = 157.35, indicating high accuracy relative to sales scale
+
+## 📊 Forecasting & Results
+
+### Strategic Forecasting
+- Forecasted 24 months of future sales
+- Assumed a 1% monthly revenue growth rate
+
+### Forecast Insights
+- Predicts a steady upward trend in sales demand
+- Sales volume is expected to reach approximately 32,000 units by 2024, assuming consistent revenue growth
+
+## 🔑 Key Findings
+- Revenue and Average Cost are the most significant predictors of sales demand 
+- Regional Payroll shows comparatively lower influence
+
+## 💼 Business Impact
+This project provides a reliable forecasting framework for inventory management and financial planning, enabling businesses to anticipate demand based on financial targets rather than intuition.
+
+## 🛠️ Tools & Technologies
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Statsmodels
+- pmdarima
+- Jupyter Notebook
+
+## 📁 Repository Structure
+data/        → Raw and cleaned datasets  
+notebooks/  → Step-by-step analysis and modeling  
+results/    → Forecast outputs and visualizations  
+report/     → Final project report (PDF)
+
+## 📌 Conclusion
+The sales-demand-forecasting-tsa project demonstrates how time series forecasting combined with economic exogenous variables can deliver accurate and interpretable sales predictions, supporting real-world business decision-making.
+
+## 📊 Dataset
+The dataset used in this project is sourced from **Kaggle**. 
+You can find the original data here: [https://www.kaggle.com/datasets/podsyp/time-series-starter-dataset]
+
+*Note: The dataset contains monthly business records including sales quantity, revenue, and cost metrics.*
+
+
